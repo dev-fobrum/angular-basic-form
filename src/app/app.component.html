@@ -1,0 +1,38 @@
+<div class="form-component">
+  <h2>Basic form validation</h2>
+  <div class="col-sm-6">
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+      <h4>Personal data</h4>
+      <div class="form-group">
+        <label for="email">Email address *</label>
+        <input ngModel email required #email="ngModel" type="email" id="email" class="form-control" name="email"
+          placeholder="Enter email">
+        <span *ngIf="email.invalid && email.touched" class="error">E-mail is not valid</span>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password *</label>
+        <input ngModel required #password="ngModel" minlength="3" maxlength="12" type="password" id="password"
+          class="form-control" name="password" placeholder="Password">
+        <span *ngIf="password.invalid && password.touched" class="error">Password is not valid</span>
+      </div>
+
+      <h4>Address</h4>
+      <div class="form-group">
+        <label for="address">Street Name (optional)</label>
+        <input ngModel pattern="[a-zA-Z0-9 ]*" #address="ngModel" type="text" id="address" class="form-control"
+          name="address" placeholder="Enter address">
+        <span *ngIf="address.invalid && address.touched" class="error">Address is not valid</span>
+      </div>
+
+      <div class="form-group">
+        <label for="number">Number (optional)</label>
+        <input ngModel pattern="[0-9]*" #number="ngModel" type="text" type="number" class="form-control" name="number"
+          placeholder="Enter number">
+        <span *ngIf="number.invalid && number.touched" class="error">Number is not valid</span>
+      </div>
+
+      <button [disabled]="userForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
